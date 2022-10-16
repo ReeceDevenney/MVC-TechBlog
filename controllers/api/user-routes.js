@@ -53,6 +53,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     User.update(req.body, {
+        // NEED TO AD INDIVIDUAL HOOK LINE
         where: {
             id: req.params.id
         }
