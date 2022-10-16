@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:id', (req, res) => {
-    User.findOne({
+    User.findOne({       
         include: [
             {
                 model: Post,
@@ -22,8 +22,16 @@ router.get('/:id', (req, res) => {
             {
                 model: Comment,
                 attributes: ['id', 'comment_text', 'created_at'],
+                include: {
+                    model: Post,
+                    attributes: ['title']
+                }
             }
-        ]
+        ],
+        attributes: { exclude: ['password'] },
+        where: {
+            id: req.params.id
+        }
     })
     .then(dbUserData => {
         if (!dbUserData) {
@@ -71,7 +79,7 @@ router.put('/:id', (req, res) => {
         });
 })
 
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     User.destroy({
         where: {
             id: req.params.id
