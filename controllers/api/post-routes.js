@@ -3,7 +3,7 @@ const { User, Post, Comment } = require("../../models");
 
 router.get('/', (req, res) => {
     Post.findAll({
-        attributes: ['id', 'post_url', 'title', 'created_at'],
+        attributes: ['id', 'text_body', 'title', 'created_at'],
         order: [['created_at', 'DESC']],
         include: [
             {
@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'post_url', 'title', 'created_at'],
+        attributes: ['id', 'text_body', 'title', 'created_at'],
         include: [
             {
                 model: Comment,
@@ -64,7 +64,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     Post.create({
         title: req.body.title,
-        post_url: req.body.post_url,
+        text_body: req.body.text_body,
         //WILL NEED TO CHANGE TO REQ.SESSION
         user_id: req.body.user_id
     })

@@ -1,0 +1,12 @@
+* {
+    background-color: rgb(65, 65, 65);
+    color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    margin-bottom: 28px;
+    border-bottom: 2px solid rgb(35, 35, 35);
+}
